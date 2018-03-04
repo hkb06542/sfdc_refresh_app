@@ -9,7 +9,7 @@ const ipc = electron.ipcMain;
 let win;
 
 app.on('ready',()=>{
-   win =  createWin.createWindow(true);
+   win =  createWin.createWindow(false);
    appmenu.createmenu(Menu,app);
 });
 
