@@ -1,0 +1,18 @@
+{
+  "name": "salesforce_refresh_app",
+  "version": "1.0.0",
+  "description": "This app is used to upsert data to the Org and make BMC app ready to use",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "author": "Hemant Barapatre",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^1.8.2",
+    "riot": "^3.9.0",
+    "riot-route": "^3.1.3",
+    "uikit": "^3.0.0-beta.40"
+  }
+}
