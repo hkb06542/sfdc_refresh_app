@@ -10,25 +10,33 @@ const fs = require('fs');
 let win;
 
 app.on('ready',()=>{
-   win =  createWin.createWindow(true);
+   win = createWin.createWindow(false);
    appmenu.createmenu(Menu,app);
+   console.log(''+win);
+
+   
 });
 
 //for windows
 app.on('window-all-closed',()=>{
 if( process.platform !== 'darwin')
 {
+  console.log(''+win);
     app.quit();
+}
+else if(process.platform === 'darwin' ){ //making explicity null for MAC OS as its easily to recreate the window in mac OS
+  win = null;
 }
 });
 
 //for mac
 app.on('activate',()=>{
-
+  console.log(''+win);
     if(win === null)
     {
-      win =  createWin.createWindow();
+     win = createWin.createWindow(false);
     }
+   // win = createWin.createWindow(false);
 
 });
 

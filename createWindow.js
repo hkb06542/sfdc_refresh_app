@@ -14,8 +14,8 @@ win = new BrowserWindow({
 
 win.loadURL(url.format({
 pathname:path.join(__dirname,'app.html'),
-protocol:'file:',
-slashes:true
+protocol: 'file:',
+slashes: true
 }))
 
 if(debug)
