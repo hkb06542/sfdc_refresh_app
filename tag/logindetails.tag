@@ -36,9 +36,19 @@
 </div>
 <script>
 const ipc = require('electron').ipcRenderer;
+var logindetail = null;
 this.on('before-mount', function() {
+//sending the fetch for login Details
+ipc.send('login-fetch-req');
+ipc.on('login-fetch-res',(event,arg)=>{
+console.log(arg);
+//now loading the UI elements 
+logindetail = JSON.parse(arg);
+this.refs.username.value = logindetail.username;
+});
+
     console.log('Loaded the Login Details Tag');
-  })
+  });
 
   add(e)
   { 
