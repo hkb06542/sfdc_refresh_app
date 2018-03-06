@@ -37,7 +37,13 @@
       //
     managesession(e){
         e.preventUpdate = true;
-     riot.mount('#views','managesession',);
+        ipc.send('session-fetch-req');
+        ipc.on('session-fetch-res',(event, arg)=>{        
+        var sessiondetailArray = arg;
+        console.log(JSON.stringify(sessiondetailArray));
+        riot.mount('#views','managesession',sessiondetailArray);
+        });
+        
      }
 
 //

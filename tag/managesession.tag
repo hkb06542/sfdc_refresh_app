@@ -1,10 +1,14 @@
 <managesession>
 <div class="uk-container">
 <ul uk-accordion>
-    <li class="uk-open">
+    <li class="uk-open" each = { opts }>
         <a class="uk-accordion-title" href="#">Current Session</a>
         <div class="uk-accordion-content">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p>Session : { opts.sessionId }</p>
+            <p>serverUrl : </p>
+            <p>UserId : </p>
+            <p>OrgID : </p>
+
         </div>
     </li>
         <li>
@@ -15,4 +19,10 @@
     </li>
 </ul>
 </div>
+<script>
+this.one('before-mount', function() {
+  console.log(this.opts.Object); 
+   
+  });
+</script>
 </managesession>

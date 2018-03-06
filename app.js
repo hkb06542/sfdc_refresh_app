@@ -1,6 +1,8 @@
 const electron = require('electron');
 const createWin = require('./createWindow');
 const appmenu = require('./appMenu');
+const fsd = require('./fetchSessionDetails');
+const fld = require('./fetchLoginDetails');
 const app = electron.app;
 const Menu = electron.Menu;
 const ipc = electron.ipcMain;
@@ -11,12 +13,11 @@ const fs = require('fs');
 let win;
 
 app.on('ready',()=>{
-   win = createWin.createWindow(false);
+   win = createWin.createWindow(true);
    appmenu.createmenu(Menu,app);
-   console.log(''+win);
-   fetchLoginDetails();
-
-   
+   //console.log(''+win);
+   //fetchLoginDetails();
+   //fsd.connectSFDCSaveSession();   
 });
 
 //for windows
@@ -65,31 +66,13 @@ ipc.on('login-add',(event,arg)=>{
   fs.writeFileSync('logindetail.config',JSON.stringify(logindetail,null,2));
 });
  
-//method to fetch the login details from file
-var fetchLoginDetails = ()=>{
-  
-  var logindetailFetched = {
-    username:'',
-    password:'',
-    securitytoken:'',
-    orgtype:'',
-    notes:'',
-    active:false
-  }; 
-  
-  if(fs.existsSync('logindetail.config'))
-  {
-    var content = fs.readFileSync('logindetail.config','utf8');
-    var logindetailFetched = content;
-    //console.log(logindetailFetched);
-    
-  }
-  else{
-    logindetailFetched = null;
-  }
-  return logindetailFetched
-};
+
 //sending the call for fetching the data
 ipc.on('login-fetch-req',(event,args)=>{
-event.sender.send('login-fetch-res',fetchLoginDetails());
+event.sender.send('login-fetch-res',fld.fetchLoginDetails());
 });
+
+//sending the call for fetching the data
+ipc.on('session-fetch-req',(event,args)=>{
+  event.sender.send('session-fetch-res',fsd.getSessionDetailsformFile());
+  });
