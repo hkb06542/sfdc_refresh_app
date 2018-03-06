@@ -1,29 +1,29 @@
 <logindetails>
 <div class="uk-container">
-<form onsubmit={ add }>
+<form ref="logindetail" onsubmit={ add }>
     <fieldset class="uk-fieldset">
 
         <legend class="uk-legend">Add Account</legend>
 
         <div class="uk-margin">
-            <input class="uk-input" type="text" placeholder="Username" ref="username">
+            <input class="uk-input" type="text" placeholder="Username" ref="username" value="{opts.username}">
         </div>
         <div class="uk-margin">
-            <input class="uk-input" type="text" placeholder="Password" ref="password">
+            <input class="uk-input" type="text" placeholder="Password" ref="password" value="{opts.password}">
         </div>
         <div class="uk-margin">
-            <input class="uk-input" type="text" placeholder="Security Token" ref="securitytoken">
+            <input class="uk-input" type="text" placeholder="Security Token" ref="securitytoken" value="{opts.securitytoken}">
         </div>
 
         <div class="uk-margin">
-            <select class="uk-select" ref="orgtype">
+            <select class="uk-select" ref="orgtype" value="{opts.orgtype}">
                 <option>Sandbox</option>
                 <option>Production</option>
             </select>
         </div>
 
         <div class="uk-margin">
-            <textarea class="uk-textarea" rows="5" placeholder="Notes" ref="notes"></textarea>
+            <textarea class="uk-textarea" rows="5" placeholder="Notes" ref="notes" value="{opts.notes}"></textarea>
         </div>
 
         <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
@@ -36,18 +36,9 @@
 </div>
 <script>
 const ipc = require('electron').ipcRenderer;
-var logindetail = null;
-this.on('before-mount', function() {
-//sending the fetch for login Details
-ipc.send('login-fetch-req');
-ipc.on('login-fetch-res',(event,arg)=>{
-console.log(arg);
-//now loading the UI elements 
-logindetail = JSON.parse(arg);
-this.refs.username.value = logindetail.username;
-});
-
-    console.log('Loaded the Login Details Tag');
+this.one('before-mount', function() {
+  console.log(this.opts); 
+   
   });
 
   add(e)

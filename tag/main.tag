@@ -22,7 +22,6 @@
 </div>
 <script>
 this.on('before-mount', ()=>{
-    console.log('Loading...');
     this.more = 'Read More guyz';
     this.screensize = size;
 })

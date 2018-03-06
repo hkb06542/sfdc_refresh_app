@@ -17,20 +17,30 @@
         <li><a href="#" onclick={exit}><span class="uk-margin-small-right" uk-icon="icon: trash"></span> Exit</a></li>
     </div>
     <script>
+       //renderer process
+    const ipc = require('electron').ipcRenderer;
 
     logindetails(e){
-        e.preventUpdate = true;
-     riot.mount('#views','logindetails');
-     console.log('click has been call');
-    };
-       managesession(e){
-        e.preventUpdate = true;
-     riot.mount('#views','managesession');
-     console.log('click has been call');
-    }
+    e.preventUpdate = true;
+    //sending the fetch for login Details
+    ipc.send('login-fetch-req');
+    ipc.on('login-fetch-res',(event,arg)=>{
 
-   //renderer process
-    const ipc = require('electron').ipcRenderer;
+    var logindetail = JSON.parse(arg);
+    //console.log('Calling. .. .  .' +logindetail.username);
+    riot.mount('#views','logindetails',logindetail);
+    
+    });
+
+      };
+
+      //
+    managesession(e){
+        e.preventUpdate = true;
+     riot.mount('#views','managesession',);
+     }
+
+//
     exit(e){
      e.preventUpdate = true;
      console.log('Quitting App')
