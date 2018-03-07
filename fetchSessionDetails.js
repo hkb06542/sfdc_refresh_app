@@ -17,6 +17,7 @@ var conn = new sf.Connection({
 //a function for getting session details
 var connectSFDCSaveSession = ()=>
 {
+
     if(fs.existsSync(login_filename))
     {  
      //accessing file now   
@@ -29,8 +30,8 @@ var connectSFDCSaveSession = ()=>
         var sessionDetailsArray = [];//List for holding session details
         //object structure of sessions
        var sessionDetails = {
-            serverUrl:  conn.accessToken,
-            sessionId:  conn.instanceUrl,
+            serverUrl: conn.instanceUrl ,
+            sessionId:conn.accessToken  ,
             UserId: userInfo.id,
             OrgID: userInfo.organizationId
                            };
@@ -61,15 +62,12 @@ var getSessionDetailsformFile =()=>{
         UserId: '',
         OrgID: ''
                 };
-  var sessionsjson = fs.readFileSync(session_filename,'utf8');
-  sessionDetails = sessionsjson;
-   return sessionDetails;
+
+  var sessionsjsonString = fs.readFileSync(session_filename,'utf8');
+  
+   return sessionsjsonString;
 };//
 
-var saveSessionDetails =()=>{
-    
-
-};//
 
 module.exports = {
     getSessionDetailsformFile,

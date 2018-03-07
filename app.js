@@ -24,7 +24,7 @@ app.on('ready',()=>{
 app.on('window-all-closed',()=>{
 if( process.platform !== 'darwin')
 {
-  console.log(''+win);
+  //console.log(''+win);
     app.quit();
 }
 else if(process.platform === 'darwin' ){ //making explicity null for MAC OS as its easily to recreate the window in mac OS

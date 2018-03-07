@@ -28,6 +28,7 @@
 
     var logindetail = JSON.parse(arg);
     //console.log('Calling. .. .  .' +logindetail.username);
+    console.log(logindetail);
     riot.mount('#views','logindetails',logindetail);
     
     });
@@ -39,9 +40,9 @@
         e.preventUpdate = true;
         ipc.send('session-fetch-req');
         ipc.on('session-fetch-res',(event, arg)=>{        
-        var sessiondetailArray = arg;
-        console.log(JSON.stringify(sessiondetailArray));
-        riot.mount('#views','managesession',sessiondetailArray);
+        var sessiondetailArray = JSON.parse(arg);
+        console.log(sessiondetailArray);
+        riot.mount('#views','managesession',{sessions:sessiondetailArray} );
         });
         
      }

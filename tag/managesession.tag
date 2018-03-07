@@ -1,27 +1,21 @@
 <managesession>
 <div class="uk-container">
 <ul uk-accordion>
-    <li class="uk-open" each = { opts }>
-        <a class="uk-accordion-title" href="#">Current Session</a>
+    <li class={ index == 0? 'uk-open': ''} each = { session, index in opts.sessions }>
+        <a class="uk-accordion-title" href="#">{ index == 0? 'Current Session': 'Previous Session'}</a>
         <div class="uk-accordion-content">
-            <p>Session : { opts.sessionId }</p>
-            <p>serverUrl : </p>
-            <p>UserId : </p>
-            <p>OrgID : </p>
+            <p>Session : { session.sessionId }</p>
+            <p>serverUrl : { session.serverUrl } </p>
+            <p>UserId : { session.UserId }</p>
+            <p>OrgID : {session.OrgID } </p>
 
-        </div>
-    </li>
-        <li>
-        <a class="uk-accordion-title" href="#">Previous Session</a>
-        <div class="uk-accordion-content">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         </div>
     </li>
 </ul>
 </div>
 <script>
 this.one('before-mount', function() {
-  console.log(this.opts.Object); 
+  console.log(this.opts.session); 
    
   });
 </script>
