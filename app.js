@@ -13,7 +13,7 @@ const fs = require('fs');
 let win;
 
 app.on('ready',()=>{
-   win = createWin.createWindow(true);
+   win = createWin.createWindow(false);
    appmenu.createmenu(Menu,app);
    //console.log(''+win);
    //fetchLoginDetails();
