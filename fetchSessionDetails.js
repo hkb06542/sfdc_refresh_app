@@ -62,10 +62,13 @@ var getSessionDetailsformFile =()=>{
         UserId: '',
         OrgID: ''
                 };
-
-  var sessionsjsonString = fs.readFileSync(session_filename,'utf8');
+  if(fs.existsSync(session_filename))
+  {
+    var sessionsjsonString = fs.readFileSync(session_filename,'utf8');
+    return sessionsjsonString;
+  }
   
-   return sessionsjsonString;
+   return null;
 };//
 
 

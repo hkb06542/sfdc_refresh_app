@@ -17,7 +17,7 @@ app.on('ready',()=>{
    appmenu.createmenu(Menu,app);
    //console.log(''+win);
    //fetchLoginDetails();
-   //fsd.connectSFDCSaveSession();   
+   fsd.connectSFDCSaveSession();   
 });
 
 //for windows
@@ -34,7 +34,7 @@ else if(process.platform === 'darwin' ){ //making explicity null for MAC OS as i
 
 //for mac
 app.on('activate',()=>{
-  console.log(''+win);
+  //console.log(''+win);
     if(win === null)
     {
      win = createWin.createWindow(false);
