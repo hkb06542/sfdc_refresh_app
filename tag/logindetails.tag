@@ -30,7 +30,7 @@
             <label><input class="uk-radio" type="radio" name="radio2" checked ref="active">Active</label>
             <label><input class="uk-radio" type="radio" name="radio2"> InActive</label>
         </div>
-      <button type="submit" class="uk-button uk-button-default">Submit</button>
+      <button type="submit" class="uk-button uk-button-default">Save</button>
     </fieldset>
 </form>
 </div>

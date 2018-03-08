@@ -17,7 +17,7 @@ app.on('ready',()=>{
    appmenu.createmenu(Menu,app);
    //console.log(''+win);
    //fetchLoginDetails();
-   fsd.connectSFDCSaveSession();   
+   //fsd.connectSFDCSaveSession();   
 });
 
 //for windows
