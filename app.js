@@ -6,6 +6,7 @@ const fld = require('./fetchLoginDetails');
 const app = electron.app;
 const Menu = electron.Menu;
 const ipc = electron.ipcMain;
+const art = require('ascii-art');
 //const ipcRenderer = electron.ipcRenderer;
 const fs = require('fs');
 
@@ -13,11 +14,15 @@ const fs = require('fs');
 let win;
 
 app.on('ready',()=>{
+var Name = 'Salesforce Refresh App';
+art.font(Name, 'Doom', function(rendered){
+    console.log(rendered)
+});
    win = createWin.createWindow(false);
    appmenu.createmenu(Menu,app);
    //console.log(''+win);
    //fetchLoginDetails();
-   //fsd.connectSFDCSaveSession();   
+   fsd.connectSFDCSaveSession();   
 });
 
 //for windows

@@ -1,6 +1,7 @@
 const fs = require('fs');
 const sf = require('node-salesforce');
 const fld = require('./fetchLoginDetails');
+const _  = require('lodash');
 
 
 
@@ -33,7 +34,8 @@ var connectSFDCSaveSession = ()=>
             serverUrl: conn.instanceUrl ,
             sessionId:conn.accessToken  ,
             UserId: userInfo.id,
-            OrgID: userInfo.organizationId
+            OrgID: userInfo.organizationId,
+            datetime: new Date().toString()
                            };
 
         if(fs.existsSync(session_filename))
@@ -41,9 +43,13 @@ var connectSFDCSaveSession = ()=>
           var sessionFilesread = fs.readFileSync(session_filename,'utf8');
           sessionDetailsArray = JSON.parse(sessionFilesread);
         }                   
-        sessionDetailsArray.push(sessionDetails);                   
-        console.log(sessionDetailsArray);
-        fs.writeFileSync(session_filename,JSON.stringify(sessionDetailsArray,null, 2));
+        sessionDetailsArray.push(sessionDetails); 
+        _.reverse(sessionDetailsArray); //reverse the array
+        var unique_sessionDetailsArray = _.uniqBy(sessionDetailsArray,'sessionId'); //getting the unique session Arrays
+        var sort_sessionDetailsArray = _.sortBy(unique_sessionDetailsArray,['datetime']); //getting the unique session Arrays
+        var arrange_sessionDetailsArray = _.reverse(sort_sessionDetailsArray);
+        //console.log(_.uniqBy(sessionDetailsArray,'sessionId'));
+        fs.writeFileSync(session_filename,JSON.stringify(arrange_sessionDetailsArray,null, 2));
         
         });
     }else{
@@ -53,7 +59,7 @@ var connectSFDCSaveSession = ()=>
 };//
 
 
-
+//Method for fetching the session File
 var getSessionDetailsformFile =()=>{
 
     var sessionDetails = {

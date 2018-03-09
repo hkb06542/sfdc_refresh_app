@@ -10,7 +10,9 @@
   "author": "Hemant Barapatre",
   "license": "MIT",
   "dependencies": {
+    "ascii-art": "^1.4.2",
     "electron": "^1.8.2",
+    "lodash": "^4.17.5",
     "node-salesforce": "^0.8.0",
     "npm": "^5.7.1",
     "riot": "^3.9.0",
