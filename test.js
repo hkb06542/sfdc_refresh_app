@@ -1,3 +1,3 @@
 const connWorker = require('./connectionWorker');
 
-connWorker.connectionWorkerMethod();
+console.log(connWorker.connectionWorkerMethod());

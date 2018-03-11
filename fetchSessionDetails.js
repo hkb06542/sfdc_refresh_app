@@ -1,5 +1,6 @@
 const fs = require('fs');
-const sf = require('node-salesforce');
+const jsforce = require('jsforce');
+//const sf = require('node-salesforce');
 const fld = require('./fetchLoginDetails');
 const _  = require('lodash');
 
@@ -10,7 +11,7 @@ let login_filename = 'logindetail.config';
 
 
 //login to the salesforce
-var conn = new sf.Connection({
+var conn = new jsforce.Connection({
     loginUrl: 'https://test.salesforce.com'
 
 });
@@ -23,7 +24,7 @@ var connectSFDCSaveSession = ()=>
     {  
      //accessing file now   
     var loginDetails = JSON.parse(fld.fetchLoginDetails()); 
-    console.log(loginDetails); 
+    //console.log(loginDetails); 
     conn.login(loginDetails.username, loginDetails.password+loginDetails.securitytoken, (err, userInfo)=>{
         if(err)
         {    return console.error(err); }
