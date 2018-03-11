@@ -4,20 +4,32 @@
 <article class="uk-article">
 
     <h1 class="uk-article-title"><a class="uk-link-reset" href="">{opts.heading}</a></h1>
-
-    <p class="uk-article-meta">Written by <a href="#">Super User</a> on 12 April 2012. Posted in <a href="#">Blog</a></p>
-
-    <p class="uk-text-lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
-
-    <p>Your Current Screen resolution is :{screensize.width}px x {screensize.height}px</p>
-
-    <div class="uk-grid-small uk-child-width-auto" uk-grid>
-        <div>
-            <a class="uk-button uk-button-text" href="#">{more}</a>
+<div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
+    <div>
+        <div class="uk-card uk-card-hover uk-card-body">
+            <h3 class="uk-card-title">Hover</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
         </div>
     </div>
-
-</article>
+    <div>
+        <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+            <h3 class="uk-card-title">Default</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        </div>
+    </div>
+    <div>
+        <div class="uk-card uk-card-primary uk-card-hover uk-card-body uk-light">
+            <h3 class="uk-card-title">Primary</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        </div>
+    </div>
+    <div>
+        <div class="uk-card uk-card-secondary uk-card-hover uk-card-body uk-light">
+            <h3 class="uk-card-title">Secondary</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        </div>
+    </div>
+</div>
 
 </div>
 <script>
