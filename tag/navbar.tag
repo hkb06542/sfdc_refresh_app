@@ -1,7 +1,7 @@
 <navbar>
         <div class="uk-card uk-card-default uk-card-body uk-height-1-1">
     <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
-        <li class="uk-active uk-nav-header"><a href="#">Menu</a></li>
+        <li class="uk-active uk-nav-header"><a href="#" onclick={ main }>Menu</a></li>
         <li class="uk-parent">
             <a href="#">Login Settings</a>
             <ul class="uk-nav-sub">
@@ -20,6 +20,12 @@
        //renderer process
     const ipc = require('electron').ipcRenderer;
 
+   main(e){
+   e.preventUpdate = true;
+   riot.mount('#views','main');
+   }
+
+
     logindetails(e){
     e.preventUpdate = true;
     //sending the fetch for login Details
@@ -33,9 +39,8 @@
     
     });
 
-      };
+      };//
 
-      //
     managesession(e){
         e.preventUpdate = true;
         ipc.send('session-fetch-req');
