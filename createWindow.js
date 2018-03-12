@@ -8,8 +8,8 @@ const url = require('url')
 let win;
 var createWindow = (debug)=>{
 win = new BrowserWindow({
-    width:'1024',
-    height:'800'
+    width:1024,
+    height:600
 });
 
 win.loadURL(url.format({

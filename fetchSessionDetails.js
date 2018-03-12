@@ -59,6 +59,53 @@ var connectSFDCSaveSession = ()=>
 
 };//
 
+//Promise oriented connectSFDCSaveSession
+var connectSFDCSaveSessionPromise = ()=>{
+    return new Promise((resolve, reject)=>{
+
+        if(fs.existsSync(login_filename))
+        {  
+         //accessing file now   
+        var loginDetails = JSON.parse(fld.fetchLoginDetails()); 
+        //console.log(loginDetails); 
+        conn.login(loginDetails.username, loginDetails.password+loginDetails.securitytoken, (err, userInfo)=>{
+            if(err)
+            {    return console.error(err); }
+            //saving this connection to use them next time
+            var sessionDetailsArray = [];//List for holding session details
+            //object structure of sessions
+           var sessionDetails = {
+                serverUrl: conn.instanceUrl ,
+                sessionId:conn.accessToken  ,
+                UserId: userInfo.id,
+                OrgID: userInfo.organizationId,
+                datetime: new Date().toString()
+                               };
+    
+            if(fs.existsSync(session_filename))
+            {
+              var sessionFilesread = fs.readFileSync(session_filename,'utf8');
+              sessionDetailsArray = JSON.parse(sessionFilesread);
+            }                   
+            sessionDetailsArray.push(sessionDetails); 
+            _.reverse(sessionDetailsArray); //reverse the array
+            var unique_sessionDetailsArray = _.uniqBy(sessionDetailsArray,'sessionId'); //getting the unique session Arrays
+            var sort_sessionDetailsArray = _.sortBy(unique_sessionDetailsArray,['datetime']); //getting the unique session Arrays
+            var arrange_sessionDetailsArray = _.reverse(sort_sessionDetailsArray);
+            //console.log(_.uniqBy(sessionDetailsArray,'sessionId'));
+            fs.writeFileSync(session_filename,JSON.stringify(arrange_sessionDetailsArray,null, 2));
+            resolve('SESSION_SAVED');
+            });
+        }else{
+            
+            console.log('No Login Configuration found !');
+            reject('SESSION_SAVE_ERROR');
+        }
+
+    });
+};//
+
+
 
 //Method for fetching the session File
 var getSessionDetailsformFile =()=>{
@@ -81,5 +128,6 @@ var getSessionDetailsformFile =()=>{
 
 module.exports = {
     getSessionDetailsformFile,
-    connectSFDCSaveSession
+    connectSFDCSaveSession,
+    connectSFDCSaveSessionPromise
 }

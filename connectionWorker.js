@@ -30,8 +30,19 @@ conn.query("SELECT Id, Name FROM Account", function(err, result) {
       if(err.errorCode === 'INVALID_SESSION_ID')
       {
         console.log('Session is invalid, reconnecting  to the server');
-        fsd.connectSFDCSaveSession(); //need to create promise for this method
-        conn = conn();
+        fsd.connectSFDCSaveSessionPromise()  //need to create promise for this method
+        .then((result)=>{
+            var  conn = new  jsforce.Connection({
+                instanceUrl : availableSessionsObj[0].serverUrl,
+                accessToken : availableSessionsObj[0].sessionId
+            });
+        })
+        .catch((errorMsg)=>{
+            conn = null;
+            console.log('Promise Error :');
+            console.log(errorMsg);
+        }); 
+        
         conn = null;
       }
 
