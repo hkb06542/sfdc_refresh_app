@@ -105,6 +105,7 @@ this.one('before-mount', function() {
       
       console.log('form submitted ! with values'+JSON.stringify(logindetail));
       ipc.send('login-add',logindetail);
+      UIkit.notification('Login saved',{pos: 'top-right',status:'success'});
      
   }
 

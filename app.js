@@ -19,7 +19,7 @@ var Name = 'Salesforce Refresh App';
 art.font(Name, 'Doom', function(rendered){
 console.log(rendered);
 });
-   win = createWin.createWindow(true);
+   win = createWin.createWindow(false);
    appmenu.createmenu(Menu,app);
    //console.log(''+win);
    //fetchLoginDetails();

@@ -2,6 +2,9 @@
 <div class="uk-container">
 <h1 class="uk-heading-bullet">Setup</h1>
 
+
+
+
 </div>
 <script>
 this.on('before-mount', ()=>{
