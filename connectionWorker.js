@@ -38,12 +38,17 @@ conn.query("SELECT Id, Name FROM Account", function(err, result) {
             });
         })
         .catch((errorMsg)=>{
-            conn = null;
+            fsd.connectSFDCSaveSessionPromise()  //need to create promise for this method
+            .then((result)=>{
+                var  conn = new  jsforce.Connection({
+                    instanceUrl : availableSessionsObj[0].serverUrl,
+                    accessToken : availableSessionsObj[0].sessionId
+                });
+            });
             console.log('Promise Error :');
             console.log(errorMsg);
         }); 
         
-        conn = null;
       }
 
     return console.error(conn);

@@ -22,7 +22,7 @@
 
    main(e){
    e.preventUpdate = true;
-   riot.mount('#views','main');
+   riot.mount('#views','main',{heading:'Welcome'});
    }
 
 
